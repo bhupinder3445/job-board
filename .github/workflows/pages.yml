@@ -3,7 +3,7 @@ name: Deploy Job Board to GitHub Pages
 on:
   push:
     branches:
-      - main  # or 'master' if that's your default
+      - main  # Change this if your default branch is different
 
 permissions:
   contents: read
@@ -12,7 +12,10 @@ permissions:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages  # ✅ Required to enable GitHub Pages deployment
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,10 +23,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload static site to artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: .  # ⚠️ Make sure this is your main project folder
 
       - name: Deploy to GitHub Pages
         id: deployment
