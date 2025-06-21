@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <header><h1>Admin Login</h1></header>
+  <main>
+    <section class="application-form">
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+        <button type="submit">Login</button>
+        <p id="loginMessage"></p>
+      </form>
+    </section>
+  </main>
+  <footer><p>&copy; 2025 Tech Jobs Canada</p></footer>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const u = document.getElementById("username").value.trim();
+      const p = document.getElementById("password").value.trim();
+
+      if(u === "admin" && p === "admin123"){
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "post-job.html";
+      } else {
+        const msg = document.getElementById("loginMessage");
+        msg.textContent = "❌ Invalid username or password";
+        msg.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
